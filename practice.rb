@@ -28,25 +28,65 @@ blockchain = [
 
 # 👇👇👇 Your code HERE 👇👇👇
 
-balances = {}
+Ben_Balance = 0
+Brian_Balance = 0
+Evan_Balance = 0
+Anthony_Balance = 0
 
-blockchain.each do |transaction|
-from_user = transaction["from_user"]
-to_user = transaction["to_user"]
-amount = transaction["amount"]
 
-# Update sender's balance (if not ICO transaction)
-if from_user
-  balances[from_user] ||= 0
-  balances[from_user] -= amount
+for transaction in blockchain
+  from_user = transaction["from_user"]
+  to_user = transaction["to_user"]
+  amount = transaction["amount"]
+
+if from_user == "ben" 
+   Ben_Balance = Ben_Balance - amount
+elsif from_user == "brian" 
+   Brian_Balance = Brian_Balance - amount
+elsif from_user == "evan" 
+  Evan_Balance = Evan_Balance - amount
+elsif from_user == "anthony" 
+   Anthony_Balance = Anthony_Balance - amount
+end
+if to_user == "ben" 
+   Ben_Balance = Ben_Balance + amount
+elsif to_user == "brian" 
+   Brian_Balance = Brian_Balance + amount
+elsif to_user == "evan" 
+   Evan_Balance = Evan_Balance + amount
+elsif to_user == "anthony" 
+   Anthony_Balance = Anthony_Balance + amount
+end
 end
 
-# Update receiver's balance
-balances[to_user] ||= 0
-balances[to_user] += amount
-end
 
-# Print out the balances
-balances.each do |user, balance|
-puts "#{user.capitalize}'s KelloggCoin balance is #{balance}"
-end
+puts "Ben's KelloggCoin Balance is #{Ben_Balance}"
+puts "Brian's KelloggCoin Balance is #{Brian_Balance}"
+puts "Evan's KelloggCoin Balance is #{Evan_Balance}"
+puts "Anthony's KelloggCoin Balance is #{Anthony_Balance}"
+
+
+# used Chat GPT to get an idea of how the code can run. Took the basic "recipie" and converted the code 
+# so that it's based on the concepts we learned in class
+# balances = {}
+
+# blockchain.each do |transaction|
+# from_user = transaction["from_user"]
+# to_user = transaction["to_user"]
+# amount = transaction["amount"]
+
+# # Update sender's balance (if not ICO transaction)
+# if from_user
+#   balances[from_user] ||= 0
+#   balances[from_user] -= amount
+# end
+
+# # Update receiver's balance
+# balances[to_user] ||= 0
+# balances[to_user] += amount
+# end
+
+# # Print out the balances
+# balances.each do |user, balance|
+# puts "#{user.capitalize}'s KelloggCoin balance is #{balance}"
+# end
